@@ -12,6 +12,18 @@ class App extends Component {
     showPersons: false
   }
 
+  deletePersonHandler = (index) => {
+    console.log('Delete ', index);
+
+    const persons = this.state.persons.slice();
+    // const does not prevent changing list, just reassingning reference
+    // slice without arguments simply copies the array
+    // could also use sread to make the copy:
+    // const persons = [...this.state.persons]
+    persons.splice(index, 1); // Removes item from list
+    this.setState({persons: persons});
+  }
+
   togglePersonsHandler = () => {
     // console.log('Clicked');
     const shown = this.state.showPersons;
@@ -26,6 +38,7 @@ class App extends Component {
       ]
     });
   }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -38,8 +51,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => 
-            <Person name={person.name} age={person.age}/>
+          {this.state.persons.map((person, index) => 
+            <Person
+              click={() => this.deletePersonHandler(index)}
+              index={index}
+              name={person.name}
+              age={person.age}/>
           )}
         </div>
       )
