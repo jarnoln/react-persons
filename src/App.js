@@ -8,17 +8,14 @@ class App extends Component {
     persons: [
       { name: 'Hux', age: 35 },
       { name: 'Poe', age: 30 }
-    ]
+    ],
+    showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    console.log('Clicked');
-    this.setState({
-      persons: [
-        { name: newName, age: 55 },
-        { name: 'Hex', age: 155 }
-      ]
-    });
+  togglePersonsHandler = () => {
+    // console.log('Clicked');
+    const shown = this.state.showPersons;
+    this.setState({ showPersons: !shown});
   }
 
   nameChangedHandler = (event) => {
@@ -42,13 +39,17 @@ class App extends Component {
         <h1> Moro </h1>
         <button
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'Huck')}>Switch name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          changed={this.nameChangedHandler}>I like hats</Person>
+          onClick={this.togglePersonsHandler}>Toggle persons</button>
+          {this.state.showPersons ?
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            changed={this.nameChangedHandler}>I like hats</Person>
 
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>I like racing</Person>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>I like racing</Person>
+        </div>
+        : null}
       </div>
     );
     // Same as:
