@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 // import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person.js';
@@ -48,7 +49,11 @@ class App extends Component {
       backgroundColor: 'green',
       border: '2px solid black',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightGreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -68,11 +73,17 @@ class App extends Component {
       );
 
       buttonStyle.backgroundColor = 'red';
+      buttonStyle[':hover'].backgroundColor = 'pink';
     }
 
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
     return (
       <div className="App">
         <h1> Moro </h1>
+        <p className={classes.join(' ')}> It's alive! </p>
         <button
           style={buttonStyle}
           onClick={this.togglePersonsHandler}>Toggle persons
@@ -85,4 +96,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
