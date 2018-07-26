@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -43,14 +44,6 @@ class App extends Component {
   }
 
   render() {
-    const buttonStyle = {
-      color: 'white',
-      backgroundColor: 'green',
-      border: '2px solid black',
-      padding: '8px',
-      cursor: 'pointer',
-    };
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -61,22 +54,14 @@ class App extends Component {
             persons={this.state.persons} />
         </div>
       );
-
-      buttonStyle.backgroundColor = 'red';
     }
 
-    let classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
     return (
       <div className="App">
-        <h1> Moro </h1>
-        <p className={classes.join(' ')}> It's alive! </p>
-        <button
-          style={buttonStyle}
-          onClick={this.togglePersonsHandler}>Toggle persons
-        </button>
+        <Cockpit
+          persons={this.state.persons}
+          showPersons={this.state.showPersons}
+          clicked={this.togglePersonsHandler} />
         {persons}
       </div>
     );
