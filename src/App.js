@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 // import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person.js';
@@ -81,15 +81,17 @@ class App extends Component {
       classes.push('red');
     }
     return (
-      <div className="App">
-        <h1> Moro </h1>
-        <p className={classes.join(' ')}> It's alive! </p>
-        <button
-          style={buttonStyle}
-          onClick={this.togglePersonsHandler}>Toggle persons
-        </button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1> Moro </h1>
+          <p className={classes.join(' ')}> It's alive! </p>
+          <button
+            style={buttonStyle}
+            onClick={this.togglePersonsHandler}>Toggle persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     // Same as:
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Moro'));
