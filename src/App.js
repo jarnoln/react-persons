@@ -6,8 +6,9 @@ import Person from './Person/Person.js';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Hux', age: 35 },
-      { name: 'Poe', age: 30 }
+      { id: 'aaa', name: 'Achmed', age: 35 },
+      { id: 'bbb', name: 'Bubba', age: 25 },
+      { id: 'ccc', name: 'Walter', age: 55 }
     ],
     showPersons: false
   }
@@ -30,12 +31,14 @@ class App extends Component {
     this.setState({ showPersons: !shown});
   }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    const persons = [...this.state.persons]; // copy of persons array
+    const index = persons.findIndex(p => p.id === id);
+    // const person = {...this.state.persons[index]};  // copy of person object in list
+    const person = persons[index];
+    person.name = event.target.value;
     this.setState({
-      persons: [
-        { name: event.target.value, age: 55 },
-        { name: 'Hex', age: 155 }
-      ]
+      persons: persons
     });
   }
 
@@ -53,7 +56,9 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => 
             <Person
+              key={person.id}
               click={() => this.deletePersonHandler(index)}
+              changed={(event) => this.nameChangedHandler(event, person.id)}
               index={index}
               name={person.name}
               age={person.age}/>
