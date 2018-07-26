@@ -43,9 +43,10 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      border: '1px solid blue',
+    const buttonStyle = {
+      color: 'white',
+      backgroundColor: 'green',
+      border: '2px solid black',
       padding: '8px',
       cursor: 'pointer'
     };
@@ -64,14 +65,16 @@ class App extends Component {
               age={person.age}/>
           )}
         </div>
-      )
+      );
+
+      buttonStyle.backgroundColor = 'red';
     }
 
     return (
       <div className="App">
         <h1> Moro </h1>
         <button
-          style={style}
+          style={buttonStyle}
           onClick={this.togglePersonsHandler}>Toggle persons
         </button>
         {persons}
