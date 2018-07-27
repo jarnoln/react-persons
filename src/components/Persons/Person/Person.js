@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Person.css';
 
 const person = (props) => {
@@ -9,6 +11,13 @@ const person = (props) => {
             <input type="text" onChange={props.changed} defaultValue={props.name} />
         </div>
     )
+}
+
+person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func,
 }
 
 export default person;
