@@ -5,14 +5,39 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'aaa', name: 'Achmed', age: 35 },
-      { id: 'bbb', name: 'Bubba', age: 25 },
-      { id: 'ccc', name: 'Walter', age: 55 }
-    ],
-    showPersons: false,
-    toggleClicked: 0
+  constructor(props) {
+    super(props);
+    console.log( '[App.js] Inside Constructor', props );
+    this.state = {
+      persons: [
+        { id: 'aaa', name: 'Achmed', age: 35 },
+        { id: 'bbb', name: 'Bubba', age: 25 },
+        { id: 'ccc', name: 'Walter', age: 55 }
+      ],
+      showPersons: false,
+      toggleClicked: 0
+    }
+  }
+
+  componentWillMount () {
+    console.log( '[App.js] Inside componentWillMount()' );
+  }
+
+  componentDidMount () {
+    console.log( '[App.js] Inside componentDidMount()' );
+  }
+
+  shouldComponentUpdate ( nextProps, nextState ) {
+    console.log( '[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState );
+    return true;
+  }
+
+  componentWillUpdate ( nextProps, nextState ) {
+    console.log( '[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState );
+  }
+
+  componentDidUpdate () {
+    console.log( '[UPDATE App.js] Inside componentDidUpdate' );
   }
 
   deletePersonHandler = (index) => {
